@@ -35,7 +35,7 @@ client.on('messageCreate', async (message) => {
   if (message.content === 'hdt' || message.content === 'HDT') {
     daysUntil(timeToNextThursday()) != 0 
       ? message.reply(`${message.author} EI OLE VIELÄ HDT! HDThen on aikaa ${daysUntil(timeToNextThursday())} päivää! :sun_with_face:`)
-      : message.reply(`Hyvää HDT:ta ${msg.author}! :partying_face:`)
+      : message.reply(`Hyvää HDT:ta ${message.author}! :partying_face:`)
   }
 
   if (message.content === '!aika') {
@@ -44,6 +44,13 @@ client.on('messageCreate', async (message) => {
 
   if (message.content === '!hdt') {
     message.reply(`HDThen on aikaa ${daysUntil(timeToNextThursday())} päivää! :sun_with_face:`)
+  }
+
+  if (message.content === '!mökki') {
+    const channel = client.channels.cache.get('yleinen-paskan-lätinä');
+    if (channel) {
+      channel.send('Jaa mökille');
+    }
   }
 
 })
