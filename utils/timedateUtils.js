@@ -94,7 +94,7 @@ const cabinBDays = () => {
 
   const cabinBDayToday = cabinBDays.filter(cabinBDay => cabinBDay.date)
 
-  if (cabinBDayToday) {
+  if (cabinBDayToday.length > 0) {
     return `\nTÄNÄÄN ON ${cabinBDayToday[0].name} SYNTTÄRIT!!!\nPALJON ONNEA ${cabinBDayToday[0].name}! :partying_face::partying_face::partying_face:`
   } else 
     return ''
