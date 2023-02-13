@@ -100,8 +100,50 @@ const cabinBDays = () => {
     return ''
 }
 
+const flagDays = () => {
+
+  const flagDays = [
+    {
+      name: 'Suomen itsenäisyyspäivä',
+      date: now().getMonth() === 11 && now().getDate() === 6
+    },
+    {
+      name: 'Joulupukin syntymäpäivä',
+      date: now().getMonth() === 11 && now().getDate() === 24
+    },
+    {
+      name: 'Ystävänpäivä',
+      date: now().getMonth() === 1 && now().getDate() === 14
+    },
+    {
+      name: 'Vappu',
+      date: now().getMonth() === 4 && now().getDate() === 1
+    },
+    {
+      name: 'Juhannus',
+      date: now().getMonth() === 5 && now().getDate() === 24
+    },
+    {
+      name: 'Pitkäperjantai',
+      date: now().getMonth() === 3 && now().getDate() === 10
+    },
+  ]
+
+  const flagDayToday = flagDays.filter(flagDay => flagDay.date)
+
+  if (flagDayToday.length > 0) {
+    return `\nTänään on ${flagDayToday[0].name}!!!\n:flag-fi::flag-fi::flag-fi:`
+  } else
+    return ''
+
+}
+
 const dateAndTimeNow = () => {
-  return  `Tänään on ${dayOfTheWeek()} ${now().getDate()}. ${monthOfTheYear()}ta. Kello on ${timeNow()}. ${cabinBDays()}`
+
+  let birthdaysAndFlagdays = cabinBDays() > 0 ? cabinBDays() : ''
+  birthdaysAndFlagdays += flagDays() > 0 ? flagDays() : ''
+
+  return  `Tänään on ${dayOfTheWeek()} ${now().getDate()}. ${monthOfTheYear()}ta. Kello on ${timeNow()}. ${birthdaysAndFlagdays}`
 }
 
 const timeToMidnight = () => {
@@ -124,6 +166,8 @@ const timeToNextThursday = () => {
 
   return nextThursday - now;  
 }
+
+
 
 const millisToDate = (millis) => {
 

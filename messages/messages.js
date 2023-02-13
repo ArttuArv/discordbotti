@@ -70,7 +70,8 @@ const standardReplies = (client, message) => {
   }
 
   if (message.content.startsWith('!chuck')) {
-    getChuckNorrisJoke().then(joke => message.reply(joke))
+    getChuckNorrisJoke()
+      .then(joke => message.reply(joke))
   }
 }
 
@@ -94,7 +95,7 @@ const setHappyHdtGreeting = (client) => {
 
   // Send a message when the day changes to thursday and it's 9 o'clock in the morning
   setTimeout(() => {
-    sendMessageToGivenChannel(client, 'yleinen-paskan-lätinä', 'Hyvää HDT:ta ihmisveljet! :partying_face:')
+    sendMessageToGivenChannel(client, 'yleinen-paskan-lätinä', 'Hyvää HDT:ta ihmisveljet! :partying_face::partying_face::partying_face:')
   }, nextThursday);
 }
 
