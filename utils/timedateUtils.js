@@ -115,31 +115,31 @@ const flagDays = () => {
 
   const flagDays = [
     {
-      name: 'Suomen itsenäisyyspäivä',
+      name: '🇫🇮 🇫🇮 🇫🇮 🇫🇮Suomen itsenäisyyspäivä 🇫🇮 🇫🇮 🇫🇮 🇫🇮',
       date: now().getMonth() === 11 && now().getDate() === 6
     },
     {
-      name: 'Joulupukin syntymäpäivä',
+      name: '🎅 🎅 🎅 🎅 Joulupukin syntymäpäivä 🎅 🎅 🎅 🎅',
       date: now().getMonth() === 11 && now().getDate() === 24
     },
     {
-      name: 'Ystävänpäivä',
+      name: '💕 💕 💕ystävänpäivä 💕 💕 💕',
       date: now().getMonth() === 1 && now().getDate() === 14
     },
     {
-      name: 'Vappu',
+      name: '🍻 🥂 🍻 🥂vappu 🍻 🥂 🍻 🥂',
       date: now().getMonth() === 4 && now().getDate() === 1
     },
     {
-      name: 'Juhannus',
+      name: '🥴 🔥 🥴 🔥 juhannus 🥴 🔥 🥴 🔥',
       date: now().getMonth() === 5 && now().getDate() === 24
     },
     {
-      name: 'Pitkäperjantai',
+      name: '🥚 🥚 🥚 🥚 pitkäperjantai 🥚 🥚 🥚 🥚',
       date: now().getMonth() === 3 && now().getDate() === 10
     },
     {
-      name: 'Perttu Häkkisen kuolinpäivä Rippistä paskoille',
+      name: '🪦 🪦 🪦 🪦 Perttu Häkkisen kuolinpäivä Rippistä paskoille🪦 🪦 🪦 🪦',
       date: now().getMonth() === 7 && now().getDate() === 12
     },
   ]
@@ -147,7 +147,7 @@ const flagDays = () => {
   const flagDayToday = flagDays.filter(flagDay => flagDay.date)
 
   return flagDayToday.length > 0
-    ? `\nTänään on ${flagDayToday[0].name}!!!🇫🇮🇫🇮🇫🇮🇫🇮🇫🇮`
+    ? `\nTänään on ${flagDayToday[0].name}!!!`
     : ''
 }
 
