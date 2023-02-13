@@ -76,11 +76,11 @@ const cabinBDays = () => {
     },
     {
       name: 'DOGSU DOGE',
-      date: now().getMonth() === 7 && now().getDate() === 8 // EI TIEDOSSA
+      date: now().getMonth() === 9 && now().getDate() === 23
     },
     {
       name: 'PIKKUPOIKA',
-      date: now().getMonth() === 7 && now().getDate() === 8 // EI TIEDOSSA
+      date: now().getMonth() === 3 && now().getDate() === 3
     },
     {
       name: 'KONIN POSTI',
@@ -91,8 +91,8 @@ const cabinBDays = () => {
       date: now().getMonth() === 11 && now().getDate() === 1
     },
     {
-      name: 'MÖKKI',
-      date: now().getMonth() === 11 && now().getDate() === 1 // EI TIEDOSSA
+      name: 'ENSIMMÄISEN MÖKIN VUOSIPÄIVÄ',
+      date: now().getMonth() === 9 && now().getDate() === 20
     },
     {
       name: 'VALTAKUNNAN JOHTAJA PEKKA SIITOIN',
@@ -147,7 +147,7 @@ const flagDays = () => {
   const flagDayToday = flagDays.filter(flagDay => flagDay.date)
 
   return flagDayToday.length > 0
-    ? `\nTänään on ${flagDayToday[0].name}!!!:flag-fi::flag-fi::flag-fi:`
+    ? `\nTänään on ${flagDayToday[0].name}!!!🇫🇮🇫🇮🇫🇮🇫🇮🇫🇮`
     : ''
 }
 
