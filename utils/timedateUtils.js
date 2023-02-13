@@ -72,14 +72,14 @@ const cabinBDays = () => {
     },
     {
       name: 'ISO PIHA JONE',
-      date: now().getMonth() === 7 && now().getDate() === 8
+      date: now().getMonth() === 7 && now().getDate() === 7
     },
     {
       name: 'DOGSU DOGE',
       date: now().getMonth() === 7 && now().getDate() === 8 // EI TIEDOSSA
     },
     {
-      name: 'PIKKU POIKA',
+      name: 'PIKKUPOIKA',
       date: now().getMonth() === 7 && now().getDate() === 8 // EI TIEDOSSA
     },
     {
@@ -90,14 +90,25 @@ const cabinBDays = () => {
       name: 'ANTTERO ARVELO',
       date: now().getMonth() === 11 && now().getDate() === 1
     },
+    {
+      name: 'MÖKKI',
+      date: now().getMonth() === 11 && now().getDate() === 1 // EI TIEDOSSA
+    },
+    {
+      name: 'VALTAKUNNAN JOHTAJA PEKKA SIITOIN',
+      date: now().getMonth() === 4 && now().getDate() === 20
+    },
+    {
+      name: 'PERTTU HÄKKINEN',
+      date: now().getMonth() === 5 && now().getDate() === 10
+    },
   ]
-
+ 
   const cabinBDayToday = cabinBDays.filter(cabinBDay => cabinBDay.date)
 
-  if (cabinBDayToday.length > 0) {
-    return `\nTÄNÄÄN ON ${cabinBDayToday[0].name} SYNTTÄRIT!!!\nPALJON ONNEA ${cabinBDayToday[0].name}! :partying_face::partying_face::partying_face:`
-  } else 
-    return ''
+  return cabinBDayToday.length > 0
+    ? `\nTÄNÄÄN ON ${cabinBDayToday[0].name} SYNTTÄRIT!!!\nPALJON ONNEA ${cabinBDayToday[0].name}! :partying_face::partying_face::partying_face:`
+    : ''
 }
 
 const flagDays = () => {
@@ -127,21 +138,24 @@ const flagDays = () => {
       name: 'Pitkäperjantai',
       date: now().getMonth() === 3 && now().getDate() === 10
     },
+    {
+      name: 'Perttu Häkkisen kuolinpäivä Rippistä paskoille',
+      date: now().getMonth() === 7 && now().getDate() === 12
+    },
   ]
 
   const flagDayToday = flagDays.filter(flagDay => flagDay.date)
 
-  if (flagDayToday.length > 0) {
-    return `\nTänään on ${flagDayToday[0].name}!!!\n:flag-fi::flag-fi::flag-fi:`
-  } else
-    return ''
-
+  return flagDayToday.length > 0
+    ? `\nTänään on ${flagDayToday[0].name}!!!:flag-fi::flag-fi::flag-fi:`
+    : ''
 }
 
 const dateAndTimeNow = () => {
 
-  let birthdaysAndFlagdays = cabinBDays() > 0 ? cabinBDays() : ''
-  birthdaysAndFlagdays += flagDays() > 0 ? flagDays() : ''
+  let birthdaysAndFlagdays = cabinBDays() + flagDays()
+
+  console.log(birthdaysAndFlagdays)
 
   return  `Tänään on ${dayOfTheWeek()} ${now().getDate()}. ${monthOfTheYear()}ta. Kello on ${timeNow()}. ${birthdaysAndFlagdays}`
 }
@@ -151,11 +165,11 @@ const timeToMidnight = () => {
   const now = new Date()
   const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0)
 
-  return midnight - now;
+  return midnight - now
 
 }
 
-const timeToNextThursday = () => {
+const timeToNextThursdayNineAm = () => {
 
   const now = new Date()
   let nextThursday = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 9, 0, 0)
@@ -164,10 +178,20 @@ const timeToNextThursday = () => {
     nextThursday.setDate(nextThursday.getDate() + 1)
   }
 
-  return nextThursday - now;  
+  return nextThursday - now  
 }
 
+const timeToNextThursday = () => {
 
+  const now = new Date()
+  let nextThursday = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+
+  while (nextThursday.getDay() !== 4) {
+    nextThursday.setDate(nextThursday.getDate() + 1)
+  }
+
+  return nextThursday - now  
+}
 
 const millisToDate = (millis) => {
 
@@ -187,13 +211,14 @@ const millisToDate = (millis) => {
 }
 
 const daysUntil = (millis) => {
-  return Math.ceil(millis / (1000 * 60 * 60 * 24));
+  return Math.ceil(millis / (1000 * 60 * 60 * 24))
 }
 
 module.exports = {
   dateAndTimeNow,
   timeToMidnight,
   timeToNextThursday,
+  timeToNextThursdayNineAm,
   millisToDate,
   daysUntil
 }

@@ -1,7 +1,8 @@
 const { 
   dateAndTimeNow, 
   timeToMidnight, 
-  timeToNextThursday, 
+  timeToNextThursday,
+  timeToNextThursdayNineAm, 
   millisToDate, 
   daysUntil
 } = require('../utils/timedateUtils')
@@ -10,20 +11,20 @@ const { getChuckNorrisJoke } = require('../chucknorris')
 
 const sendMessageToGivenChannel = (client, channelName, message) => {
 
-  const guild = client.guilds.cache.first();
+  const guild = client.guilds.cache.first()
   if (!guild)
-    return console.error('No guilds found.');
+    return console.error('No guilds found.')
 
-  const channel = guild.channels.cache.find(channel => channel.name === channelName);
+  const channel = guild.channels.cache.find(channel => channel.name === channelName)
 
   if (!channel)
-    return console.error('No channel found.');
+    return console.error('No channel found.')
 
   channel.send(message)
     .then(() => console.log(`Message sent to ${channel.name}!`))
-    .catch(console.error);
+    .catch(console.error)
 
-};
+}
 
 const standardReplies = (client, message) => {
 
@@ -34,9 +35,9 @@ const standardReplies = (client, message) => {
     message.reply('Pong!')
   }
 
-  if (message.content.toLowerCase().startsWith('hdt')) {
+  if (message.content.toLowerCase().startsWith('hdt') || message.content.toLowerCase().includes('hdt')) {
     daysUntil(timeToNextThursday()) != 0 
-      ? message.reply(`${message.author} EI OLE VIELÄ HDT! HDThen on aikaa ${daysUntil(timeToNextThursday())} päivää! :sun_with_face:`)
+      ? message.reply(`${message.author} EI OLE VIELÄ HDT! HDThen on aikaa ${daysUntil(timeToNextThursdayNineAm())} päivää! :sun_with_face:`)
       : message.reply(`Hyvää HDT:ta ${message.author}! :partying_face:`)
   }
 
@@ -79,24 +80,24 @@ const setTimedMessages = (client) => {
   
   const midnight = timeToMidnight()
 
-  console.log(`Interval to midnight: ${midnight} milliseconds`);
+  console.log(`Interval to midnight: ${midnight} milliseconds`)
 
   // Send a message when the day changes
   setTimeout(() => {
     sendMessageToGivenChannel(client, 'yleinen-paskan-lätinä', dateAndTimeNow())
-  }, midnight);
+  }, midnight)
 }  
 
 const setHappyHdtGreeting = (client) => {
   
-  const nextThursday = timeToNextThursday()
+  const nextThursday = timeToNextThursdayNineAm()
 
-  console.log(`Interval to next thursday: ${nextThursday} milliseconds`);
+  console.log(`Interval to next thursday: ${nextThursday} milliseconds`)
 
   // Send a message when the day changes to thursday and it's 9 o'clock in the morning
   setTimeout(() => {
     sendMessageToGivenChannel(client, 'yleinen-paskan-lätinä', 'Hyvää HDT:ta ihmisveljet! :partying_face::partying_face::partying_face:')
-  }, nextThursday);
+  }, nextThursday)
 }
 
 module.exports = { 

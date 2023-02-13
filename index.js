@@ -2,7 +2,7 @@ const { Client, GatewayIntentBits } = require('discord.js')
 require ('dotenv').config()
 
 const { standardReplies, setTimedMessages, setHappyHdtGreeting } = require("./messages/messages")
-const { dateAndTimeNow, timeToMidnight, timeToNextThursday, millisToDate, daysUntil } = require('./utils/timedateUtils')
+const { dateAndTimeNow, timeToMidnight, timeToNextThursday, timeToNextThursdayNineAm, millisToDate, daysUntil } = require('./utils/timedateUtils')
 
 const token = process.env.TOKEN
 const permissions = process.env.PERMISSIONS
