@@ -5,6 +5,7 @@ const {
   millisToDate, 
   daysUntil
 } = require('../utils/timedateUtils')
+const { getChuckNorrisJoke } = require('../chucknorris')
 
 
 const sendMessageToGivenChannel = (client, channelName, message) => {
@@ -52,11 +53,24 @@ const standardReplies = (client, message) => {
   }
 
   if (message.content.startsWith('!bot')) {
-    message.reply('Nää komennot nyt ainaski löytyy:\n- !aika\n- !hdt\n- !mökki\n- !bot\n\nTulossa EHKÄ:\n- Spotify playlist ultimate automatic collector\n- Old Lemoon Pitsu/kebub-tilaushäzzäkkä')
+    message.reply('Nää komennot nyt ainaski löytyy:\n' + 
+      '- !aika - Mikä päivä ja paljon kello\n' + 
+      '- !hdt - Montako päivää torstaihin\n' + 
+      '- !mökki - Jaa mökille..\n' + 
+      '- !bot - Botin komennot\n' + 
+      '- !chuck - Random Chuck Norris Vizi :sun_with_face:\n\n' + 
+      'Tulossa EHKÄ:\n' + 
+      '- Spotify playlist ultimate automatic collector\n' + 
+      '- Old Lemoon Pitsu/kebub-tilaushäzzäkkä\n\n' +
+      'ETSITÄÄN BACKEND DEVAAJA PR0TA TEKEMÄÄN JOKU SIMPPELI EXPRESS.JS BACKENDI TÄHÄN BOTTIIN :partying_face:😎')
   }
 
   if (message.content.toLowerCase().includes('mökille') || message.content.toLowerCase().includes('mökillä')) {
     sendMessageToGivenChannel(client, 'yleinen-paskan-lätinä', 'Jaa mökille')
+  }
+
+  if (message.content.startsWith('!chuck')) {
+    getChuckNorrisJoke().then(joke => message.reply(joke))
   }
 }
 
@@ -82,11 +96,11 @@ const setHappyHdtGreeting = (client) => {
   setTimeout(() => {
     sendMessageToGivenChannel(client, 'yleinen-paskan-lätinä', 'Hyvää HDT:ta ihmisveljet! :partying_face:')
   }, nextThursday);
-}  
+}
 
 module.exports = { 
   sendMessageToGivenChannel,
   standardReplies,
   setTimedMessages,
-  setHappyHdtGreeting
+  setHappyHdtGreeting,
 }
