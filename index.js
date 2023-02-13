@@ -20,8 +20,8 @@ const client = new Client({
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`)
 
-  // setTimedMessages(client)
-  // setHappyHdtGreeting(client)
+  setTimedMessages(client)
+  setHappyHdtGreeting(client)
 
 })
 
