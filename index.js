@@ -33,6 +33,3 @@ client.on('messageCreate', async (message) => {
 })
 
 client.login(token)
-
-
-console.log(dateAndTimeNow())

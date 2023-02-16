@@ -35,6 +35,28 @@ const timeToNextThursdayNineAm = () => {
   return nextThursday - now  
 }
 
+const dayOfTheWeek = () => {
+
+  const day = now().getDay()
+
+  switch (day) {
+    case 0:
+      return 'sunnuntai'
+    case 1:
+      return 'maanantai'
+    case 2:
+      return 'tiistai'
+    case 3:
+      return 'keskiviikko'
+    case 4:
+      return 'torstai'
+    case 5:
+      return 'perjantai'
+    case 6:
+      return 'lauantai'
+  }
+}
+
 const timeToNextThursday = () => {
 
   const now = new Date()
@@ -74,6 +96,7 @@ const daysUntil = (millis) => {
 
 module.exports = {
   dateAndTimeNow,
+  dayOfTheWeek,
   timeToMidnight,
   timeToNextThursday,
   timeToNextThursdayNineAm,
@@ -171,28 +194,6 @@ const flagDays = () => {
   return flagDayToday.length > 0
     ? `\nTänään on ${flagDayToday[0].name}!!!`
     : ''
-}
-
-const dayOfTheWeek = () => {
-
-  const day = now().getDay()
-
-  switch (day) {
-    case 0:
-      return 'sunnuntai'
-    case 1:
-      return 'maanantai'
-    case 2:
-      return 'tiistai'
-    case 3:
-      return 'keskiviikko'
-    case 4:
-      return 'torstai'
-    case 5:
-      return 'perjantai'
-    case 6:
-      return 'lauantai'
-  }
 }
 
 const monthOfTheYear = () => {

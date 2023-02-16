@@ -1,5 +1,6 @@
 const { 
   dateAndTimeNow, 
+  dayOfTheWeek,
   timeToMidnight, 
   timeToNextThursday,
   timeToNextThursdayNineAm, 
@@ -111,7 +112,10 @@ const setTimedMessages = (client) => {
 
   // Send a message when the day changes
   setTimeout(() => {
-    sendMessageToGivenChannel(client, 'yleinen-paskan-lätinä', dateAndTimeNow())
+    dayOfTheWeek() === 'perjantai'
+      ? sendMessageToGivenChannel(client, 'yleinen-paskan-lätinä', `${dateAndTimeNow()}\nTöiviikon paras päivä! Hyvää bizneetpöhinää kaikkien perjantaihin 🥳🥳🥳`)
+      : sendMessageToGivenChannel(client, 'yleinen-paskan-lätinä', dateAndTimeNow())
+
     console.log('Day changed!')
     console.log(`Interval to midnight: ${midnight} milliseconds`)
   }, midnight)
@@ -123,7 +127,7 @@ const setHappyHdtGreeting = (client) => {
 
   // Send a message when the day changes to thursday and it's 9 o'clock in the morning
   setTimeout(() => {
-    sendMessageToGivenChannel(client, 'yleinen-paskan-lätinä', 'Hyvää HDT:ta ihmisveljet! 🥳🥳🥳')
+    sendMessageToGivenChannel(client, 'yleinen-paskan-lätinä', 'Hyvää Hyvää HDT Discord Torstaita ihmisveljet! 🥳🥳🥳')
     console.log('HDT happened!')
     console.log(`Interval to next thursday: ${nextThursday} milliseconds`)
   }, nextThursday)
