@@ -2,7 +2,7 @@ const { Client, GatewayIntentBits } = require('discord.js')
 require ('dotenv').config()
 
 const { replies, commands, channelMessages, setTimedMessages, setHappyHdtGreeting } = require("./messages/messages")
-const { cabinBDays, timeToNextThursday, timeToNextThursdayNineAm, millisToDate, millisToHours, timeToMidnight, daysUntil } = require("./utils/timedateUtils")
+const { timeToNextThursday, timeToNextThursdayNineAm, millisToDate, millisToHours, timeToMidnight, daysUntil, dateAndTimeNow } = require("./utils/timedateUtils")
 
 const token = process.env.TOKEN
 const permissions = process.env.PERMISSIONS
@@ -20,9 +20,7 @@ client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`)
 
   setTimedMessages(client)
-  setHappyHdtGreeting(client)
-
-  console.log(`Cabin B days: ${cabinBDays()}`)
+  // setHappyHdtGreeting(client)
 
 })
 
@@ -35,3 +33,6 @@ client.on('messageCreate', async (message) => {
 })
 
 client.login(token)
+
+
+console.log(dateAndTimeNow())

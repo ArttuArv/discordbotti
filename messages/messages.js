@@ -7,6 +7,7 @@ const {
   daysUntil
 } = require('../utils/timedateUtils')
 const { getChuckNorrisJoke } = require('../chucknorris')
+const { stringSimilarityInPercents } = require('../utils/stringCompare')
 
 
 const sendMessageToGivenChannel = (client, channelName, message) => {
@@ -31,19 +32,35 @@ const replies = (message) => {
   if (message.author.bot)
     return 
 
-  if (message.content === 'ping') {
+  const userMessage = message.content
+  const hdtRef = 'hyvää discord torstaita'
+
+  console.log('percentage:', stringSimilarityInPercents(hdtRef, userMessage))
+
+  if (userMessage === 'ping') {
     message.reply('Pong!')
   }
 
-  if (message.content.toLowerCase() === 'päivää' || message.content.toLowerCase() === 'päivää!') {
+  if (userMessage.toLowerCase() === 'päivää' || userMessage.toLowerCase() === 'päivää!') {
     message.reply(`PÄIVÄÄ!!!🤘😎🤘`)
   }
 
-  if (message.content.toLowerCase().startsWith('hdt') || message.content.toLowerCase().includes('hdt')) {
+  if (userMessage.toLowerCase().startsWith('hdt') 
+    || userMessage.toLowerCase().includes('hdt') 
+    || userMessage.toLowerCase().startsWith('hyvää discord torstaita')) {
+
+      daysUntil(timeToNextThursday()) != 0 
+        ? message.reply(`${message.author} EI OLE VIELÄ HDT! HDT on ${returnDayRelativeToNextThursday()}! 🌞`)
+        : message.reply(`Hyvää Discord Torstaita ${message.author}! 🥳`)
+  }
+
+  if (stringSimilarityInPercents(hdtRef, userMessage) >= 75) {
+
+    console.log('percentage:', stringSimilarityInPercents(hdtRef, userMessage))
 
     daysUntil(timeToNextThursday()) != 0 
-      ? message.reply(`${message.author} EI OLE VIELÄ HDT! HDT on ${returnDayRelativeToNextThursday()}! 🌞`)
-      : message.reply(`Hyvää Discord Torstaita ${message.author}! 🥳`)
+        ? message.reply(`${message.author} EI OLE VIELÄ HDT! HDT on ${returnDayRelativeToNextThursday()}! 🌞`)
+        : message.reply(`Hyvää Discord Torstaita ${message.author}! 🥳`)
   }
 }
 

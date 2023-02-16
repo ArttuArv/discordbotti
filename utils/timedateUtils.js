@@ -1,63 +1,5 @@
 require ('dotenv').config()
 
-const now = () => {
-  return new Date()
-}
-
-const dayOfTheWeek = () => {
-
-  const day = now().getDay()
-
-  switch (day) {
-    case 0:
-      return 'sunnuntai'
-    case 1:
-      return 'maanantai'
-    case 2:
-      return 'tiistai'
-    case 3:
-      return 'keskiviikko'
-    case 4:
-      return 'torstai'
-    case 5:
-      return 'perjantai'
-    case 6:
-      return 'lauantai'
-  }
-}
-
-const monthOfTheYear = () => {
-
-  const month = now().getMonth()
-
-  switch (month) {
-    case 0:
-      return 'tammikuu'
-    case 1:
-      return 'helmikuu'
-    case 2:
-      return 'maaliskuu'
-    case 3:
-      return 'huhtikuu'
-    case 4:
-      return 'toukokuu'
-    case 5:
-      return 'kesäkuu'
-    case 6:
-      return 'heinäkuu'
-    case 7:
-      return 'elokuu'
-    case 8:
-      return 'syyskuu'
-    case 9:
-      return 'lokakuu'
-    case 10:
-      return 'marraskuu'
-    case 11:
-      return 'joulukuu'
-  }
-}
-
 const timeNow = () => {
   const minutes = now().getMinutes()
   const hours = now().getHours()
@@ -65,98 +7,11 @@ const timeNow = () => {
   return minutes < 10 ? `${hours}:0${minutes}` : `${hours}:${minutes}` 
 }
 
-const cabinBDays = () => {
-  const cabinBDays = [
-    {
-      name: process.env.NIMI1,
-      date: now().getMonth() === 1 && now().getDate() === 11
-    },
-    {
-      name: process.env.NIMI2,
-      date: now().getMonth() === 7 && now().getDate() === 7
-    },
-    {
-      name: process.env.NIMI3,
-      date: now().getMonth() === 9 && now().getDate() === 23
-    },
-    {
-      name: process.env.NIMI4,
-      date: now().getMonth() === 3 && now().getDate() === 3
-    },
-    {
-      name: process.env.NIMI5,
-      date: now().getMonth() === 0 && now().getDate() === 3
-    },
-    {
-      name: process.env.NIMI6,
-      date: now().getMonth() === 11 && now().getDate() === 1
-    },
-    {
-      name: process.env.NIMI7,
-      date: now().getMonth() === 9 && now().getDate() === 20
-    },
-    {
-      name: process.env.NIMI8,
-      date: now().getMonth() === 4 && now().getDate() === 20
-    },
-    {
-      name: process.env.NIMI8,
-      date: now().getMonth() === 1 && now().getDate() === 17
-    },
-  ]
- 
-  const cabinBDayToday = cabinBDays.filter(cabinBDay => cabinBDay.date).map(cabinBDay => cabinBDay.name)
-
-  return cabinBDayToday
-    ? `\nTÄNÄÄN SYNTTÄREITÄ VIETTÄÄ ${cabinBDayToday}!!!\nPALJON ONNEA ${cabinBDayToday}! :partying_face::partying_face::partying_face:`
-    : ''
-}
-
-const flagDays = () => {
-
-  const flagDays = [
-    {
-      name: '🇫🇮 🇫🇮 🇫🇮 🇫🇮 Suomen itsenäisyyspäivä 🇫🇮 🇫🇮 🇫🇮 🇫🇮',
-      date: now().getMonth() === 11 && now().getDate() === 6
-    },
-    {
-      name: '🎅 🎅 🎅 🎅 Joulupukin syntymäpäivä 🎅 🎅 🎅 🎅',
-      date: now().getMonth() === 11 && now().getDate() === 24
-    },
-    {
-      name: '💕 💕 💕 ystävänpäivä 💕 💕 💕',
-      date: now().getMonth() === 1 && now().getDate() === 14
-    },
-    {
-      name: '🍻 🥂 🍻 🥂 vappu 🍻 🥂 🍻 🥂',
-      date: now().getMonth() === 4 && now().getDate() === 1
-    },
-    {
-      name: '🥴 🔥 🥴 🔥 juhannus 🥴 🔥 🥴 🔥',
-      date: now().getMonth() === 5 && now().getDate() === 24
-    },
-    {
-      name: '🥚 🥚 🥚 🥚 pitkäperjantai 🥚 🥚 🥚 🥚',
-      date: now().getMonth() === 3 && now().getDate() === 10
-    },
-    {
-      name: '🪦 🪦 🪦 🪦 Perttu Häkkisen kuolinpäivä Rippistä paskoille 🪦 🪦 🪦 🪦',
-      date: now().getMonth() === 7 && now().getDate() === 12
-    },
-  ]
-
-  const flagDayToday = flagDays.filter(flagDay => flagDay.date)
-
-  return flagDayToday.length > 0
-    ? `\nTänään on ${flagDayToday[0].name}!!!`
-    : ''
-}
-
 const dateAndTimeNow = () => {
 
   const birthdaysAndFlagdays = cabinBDays() + flagDays()
 
-  return  `Tänään on ${dayOfTheWeek()} ${now().getDate()}. ${monthOfTheYear()}ta. Kello on ${timeNow()}. ${birthdaysAndFlagdays}`
+  return `${weekNumberOfTheYear()}. viikko. Tänään on ${dayOfTheWeek()} ${now().getDate()}. ${monthOfTheYear()}ta. Kello on ${timeNow()}. ${birthdaysAndFlagdays}`
 }
 
 const timeToMidnight = () => {
@@ -218,7 +73,6 @@ const daysUntil = (millis) => {
 }
 
 module.exports = {
-  cabinBDays,
   dateAndTimeNow,
   timeToMidnight,
   timeToNextThursday,
@@ -226,4 +80,154 @@ module.exports = {
   millisToDate,
   millisToHours,
   daysUntil
+}
+
+const now = () => {
+  return new Date()
+}
+
+const cabinBDays = () => {
+  const cabinBDays = [
+    {
+      name: process.env.NIMI1,
+      date: now().getMonth() === 2 && now().getDate() === 11
+    },
+    {
+      name: process.env.NIMI2,
+      date: now().getMonth() === 8 && now().getDate() === 7
+    },
+    {
+      name: process.env.NIMI3,
+      date: now().getMonth() === 10 && now().getDate() === 23
+    },
+    {
+      name: process.env.NIMI4,
+      date: now().getMonth() === 4 && now().getDate() === 3
+    },
+    {
+      name: process.env.NIMI5,
+      date: now().getMonth() === 1 && now().getDate() === 3
+    },
+    {
+      name: process.env.NIMI6,
+      date: now().getMonth() === 12 && now().getDate() === 1
+    },
+    {
+      name: process.env.NIMI7,
+      date: now().getMonth() === 10 && now().getDate() === 20
+    },
+    {
+      name: process.env.NIMI8,
+      date: now().getMonth() === 5 && now().getDate() === 20
+    },
+    {
+      name: process.env.NIMI8,
+      date: now().getMonth() === 2 && now().getDate() === 17
+    },
+  ]
+ 
+  const cabinBDayToday = cabinBDays.filter(cabinBDay => cabinBDay.date).map(cabinBDay => cabinBDay.name)
+
+  return cabinBDayToday.length > 0
+    ? `\nTÄNÄÄN SYNTTÄREITÄ VIETTÄÄ ${cabinBDayToday}!!!\nPALJON ONNEA ${cabinBDayToday}! :partying_face::partying_face::partying_face:`
+    : ''
+}
+
+const flagDays = () => {
+
+  const flagDays = [
+    {
+      name: '🇫🇮 🇫🇮 🇫🇮 🇫🇮 Suomen itsenäisyyspäivä 🇫🇮 🇫🇮 🇫🇮 🇫🇮',
+      date: now().getMonth() === 12 && now().getDate() === 6
+    },
+    {
+      name: '🎅 🎅 🎅 🎅 Joulupukin syntymäpäivä 🎅 🎅 🎅 🎅',
+      date: now().getMonth() === 12 && now().getDate() === 24
+    },
+    {
+      name: '💕 💕 💕 ystävänpäivä 💕 💕 💕',
+      date: now().getMonth() === 2 && now().getDate() === 14
+    },
+    {
+      name: '🍻 🥂 🍻 🥂 vappu 🍻 🥂 🍻 🥂',
+      date: now().getMonth() === 5 && now().getDate() === 1
+    },
+    {
+      name: '🥴 🔥 🥴 🔥 juhannus 🥴 🔥 🥴 🔥',
+      date: now().getMonth() === 6 && now().getDate() === 24
+    },
+    {
+      name: '🥚 🥚 🥚 🥚 pitkäperjantai 🥚 🥚 🥚 🥚',
+      date: now().getMonth() === 4 && now().getDate() === 7
+    },
+    {
+      name: '🪦 🪦 🪦 🪦 Perttu Häkkisen kuolinpäivä Rippistä paskoille 🪦 🪦 🪦 🪦',
+      date: now().getMonth() === 8 && now().getDate() === 12
+    },
+  ]
+
+  const flagDayToday = flagDays.filter(flagDay => flagDay.date)
+
+  return flagDayToday.length > 0
+    ? `\nTänään on ${flagDayToday[0].name}!!!`
+    : ''
+}
+
+const dayOfTheWeek = () => {
+
+  const day = now().getDay()
+
+  switch (day) {
+    case 0:
+      return 'sunnuntai'
+    case 1:
+      return 'maanantai'
+    case 2:
+      return 'tiistai'
+    case 3:
+      return 'keskiviikko'
+    case 4:
+      return 'torstai'
+    case 5:
+      return 'perjantai'
+    case 6:
+      return 'lauantai'
+  }
+}
+
+const monthOfTheYear = () => {
+
+  const month = now().getMonth()
+
+  switch (month) {
+    case 1:
+      return 'tammikuu'
+    case 2:
+      return 'helmikuu'
+    case 3:
+      return 'maaliskuu'
+    case 4:
+      return 'huhtikuu'
+    case 5:
+      return 'toukokuu'
+    case 6:
+      return 'kesäkuu'
+    case 7:
+      return 'heinäkuu'
+    case 8:
+      return 'elokuu'
+    case 9:
+      return 'syyskuu'
+    case 10:
+      return 'lokakuu'
+    case 11:
+      return 'marraskuu'
+    case 12:
+      return 'joulukuu'
+  }
+}
+
+const weekNumberOfTheYear = () => {
+  const onejan = new Date(now().getFullYear(), 0, 1)
+  return Math.ceil((((now() - onejan) / 86400000) + onejan.getDay() + 1) / 7)
 }
