@@ -1,3 +1,4 @@
+require ('dotenv').config()
 
 const now = () => {
   return new Date()
@@ -67,47 +68,47 @@ const timeNow = () => {
 const cabinBDays = () => {
   const cabinBDays = [
     {
-      name: 'ISO ROTSI PASU',
+      name: process.env.NIMI1,
       date: now().getMonth() === 1 && now().getDate() === 11
     },
     {
-      name: 'ISO PIHA JONE',
+      name: process.env.NIMI2,
       date: now().getMonth() === 7 && now().getDate() === 7
     },
     {
-      name: 'DOGSU DOGE',
+      name: process.env.NIMI3,
       date: now().getMonth() === 9 && now().getDate() === 23
     },
     {
-      name: 'PIKKUPOIKA',
+      name: process.env.NIMI4,
       date: now().getMonth() === 3 && now().getDate() === 3
     },
     {
-      name: 'KONIN POSTI',
+      name: process.env.NIMI5,
       date: now().getMonth() === 0 && now().getDate() === 3
     },
     {
-      name: 'ANTTERO ARVELO',
+      name: process.env.NIMI6,
       date: now().getMonth() === 11 && now().getDate() === 1
     },
     {
-      name: 'ENSIMMÄISEN MÖKIN VUOSIPÄIVÄ',
+      name: process.env.NIMI7,
       date: now().getMonth() === 9 && now().getDate() === 20
     },
     {
-      name: 'VALTAKUNNAN JOHTAJA PEKKA SIITOIN',
+      name: process.env.NIMI8,
       date: now().getMonth() === 4 && now().getDate() === 20
     },
     {
-      name: 'PERTTU HÄKKINEN',
-      date: now().getMonth() === 5 && now().getDate() === 10
+      name: process.env.NIMI8,
+      date: now().getMonth() === 1 && now().getDate() === 17
     },
   ]
  
-  const cabinBDayToday = cabinBDays.filter(cabinBDay => cabinBDay.date)
+  const cabinBDayToday = cabinBDays.filter(cabinBDay => cabinBDay.date).map(cabinBDay => cabinBDay.name)
 
-  return cabinBDayToday.length > 0
-    ? `\nTÄNÄÄN ON ${cabinBDayToday[0].name} SYNTTÄRIT!!!\nPALJON ONNEA ${cabinBDayToday[0].name}! :partying_face::partying_face::partying_face:`
+  return cabinBDayToday
+    ? `\nTÄNÄÄN SYNTTÄREITÄ VIETTÄÄ ${cabinBDayToday}!!!\nPALJON ONNEA ${cabinBDayToday}! :partying_face::partying_face::partying_face:`
     : ''
 }
 
@@ -217,6 +218,7 @@ const daysUntil = (millis) => {
 }
 
 module.exports = {
+  cabinBDays,
   dateAndTimeNow,
   timeToMidnight,
   timeToNextThursday,
