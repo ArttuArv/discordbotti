@@ -1,7 +1,8 @@
 const { Client, GatewayIntentBits } = require('discord.js')
 require ('dotenv').config()
 
-const { standardReplies, setTimedMessages, setHappyHdtGreeting } = require("./messages/messages")
+const { replies, commands, channelMessages, setTimedMessages, setHappyHdtGreeting } = require("./messages/messages")
+const { timeToNextThursday, timeToNextThursdayNineAm, millisToDate, millisToHours, timeToMidnight, daysUntil } = require("./utils/timedateUtils")
 
 const token = process.env.TOKEN
 const permissions = process.env.PERMISSIONS
@@ -25,7 +26,9 @@ client.on('ready', () => {
 
 client.on('messageCreate', async (message) => {
 
-  standardReplies(client, message)
+  replies(message)
+  channelMessages(client, message)
+  commands(client, message)
 
 })
 

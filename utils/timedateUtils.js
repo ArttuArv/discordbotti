@@ -115,7 +115,7 @@ const flagDays = () => {
 
   const flagDays = [
     {
-      name: '🇫🇮 🇫🇮 🇫🇮 🇫🇮Suomen itsenäisyyspäivä 🇫🇮 🇫🇮 🇫🇮 🇫🇮',
+      name: '🇫🇮 🇫🇮 🇫🇮 🇫🇮 Suomen itsenäisyyspäivä 🇫🇮 🇫🇮 🇫🇮 🇫🇮',
       date: now().getMonth() === 11 && now().getDate() === 6
     },
     {
@@ -123,11 +123,11 @@ const flagDays = () => {
       date: now().getMonth() === 11 && now().getDate() === 24
     },
     {
-      name: '💕 💕 💕ystävänpäivä 💕 💕 💕',
+      name: '💕 💕 💕 ystävänpäivä 💕 💕 💕',
       date: now().getMonth() === 1 && now().getDate() === 14
     },
     {
-      name: '🍻 🥂 🍻 🥂vappu 🍻 🥂 🍻 🥂',
+      name: '🍻 🥂 🍻 🥂 vappu 🍻 🥂 🍻 🥂',
       date: now().getMonth() === 4 && now().getDate() === 1
     },
     {
@@ -139,7 +139,7 @@ const flagDays = () => {
       date: now().getMonth() === 3 && now().getDate() === 10
     },
     {
-      name: '🪦 🪦 🪦 🪦 Perttu Häkkisen kuolinpäivä Rippistä paskoille🪦 🪦 🪦 🪦',
+      name: '🪦 🪦 🪦 🪦 Perttu Häkkisen kuolinpäivä Rippistä paskoille 🪦 🪦 🪦 🪦',
       date: now().getMonth() === 7 && now().getDate() === 12
     },
   ]
@@ -153,9 +153,7 @@ const flagDays = () => {
 
 const dateAndTimeNow = () => {
 
-  let birthdaysAndFlagdays = cabinBDays() + flagDays()
-
-  console.log(birthdaysAndFlagdays)
+  const birthdaysAndFlagdays = cabinBDays() + flagDays()
 
   return  `Tänään on ${dayOfTheWeek()} ${now().getDate()}. ${monthOfTheYear()}ta. Kello on ${timeNow()}. ${birthdaysAndFlagdays}`
 }
@@ -210,6 +208,10 @@ const millisToDate = (millis) => {
   return `${dayOfWeek} ${date.getDate()}. ${dayOfMonth}ta kello ${hoursAndMinutes}`
 }
 
+const millisToHours = (millis) => {
+  return Math.ceil(millis / (1000 * 60 * 60))
+}
+
 const daysUntil = (millis) => {
   return Math.ceil(millis / (1000 * 60 * 60 * 24))
 }
@@ -220,5 +222,6 @@ module.exports = {
   timeToNextThursday,
   timeToNextThursdayNineAm,
   millisToDate,
+  millisToHours,
   daysUntil
 }
