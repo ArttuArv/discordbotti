@@ -20,7 +20,7 @@ client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`)
 
   setTimedMessages(client)
-  // setHappyHdtGreeting(client)
+  setHappyHdtGreeting(client)
 
 })
 
@@ -33,3 +33,4 @@ client.on('messageCreate', async (message) => {
 })
 
 client.login(token)
+

@@ -1,3 +1,4 @@
+const { AttachmentBuilder, EmbedBuilder } = require('discord.js')
 const { 
   dateAndTimeNow, 
   dayOfTheWeek,
@@ -62,6 +63,17 @@ const replies = (message) => {
     daysUntil(timeToNextThursday()) != 0 
         ? message.reply(`${message.author} EI OLE VIELÄ HDT! HDT on ${returnDayRelativeToNextThursday()}! 🌞`)
         : message.reply(`Hyvää Discord Torstaita ${message.author}! 🥳`)
+  }
+
+  if (userMessage.toLowerCase().startsWith('logo lehmä')) {
+    const attachment = new AttachmentBuilder('../discordbot/assets/images/tauren-female.gif')  
+
+    if (!attachment)
+      return console.error('No attachment found.')
+
+    console.log('attachment:', attachment)
+
+    message.reply({ files: [attachment] })
   }
 }
 
