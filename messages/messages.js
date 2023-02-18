@@ -66,7 +66,7 @@ const replies = (message) => {
   }
 
   if (userMessage.toLowerCase().startsWith('logo lehmä')) {
-    const attachment = new AttachmentBuilder('../discordbot/assets/images/tauren-female.gif')  
+    const attachment = new AttachmentBuilder('../discordbotti/assets/images/tauren-female.gif')  
 
     if (!attachment)
       return console.error('No attachment found.')
